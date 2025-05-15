@@ -1,10 +1,13 @@
 name: 'JabRef Action'
 description: 'Runs JabRef tasks'
-author: 'JabRef developers'
+author: 'JabRef e.V.'
 inputs:
   bibfile:
     description: 'BibTeX file'
     required: true
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - check-consistency
+    - --input=${{ inputs.bibfile }}
