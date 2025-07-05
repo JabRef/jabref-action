@@ -24,9 +24,11 @@ jobs:
         with:
           bibfile: test/consistent.bib
       - name: Check test/inconsistent.bib
-       # inconsistent.bib will trigger a failure, but the overall action should pass
-       # We include this step for manual inspection
         continue-on-error: true
         uses: ./
+        id: inconsistent
         with:
           bibfile: test/inconsistent.bib
+      - name: inconsistent failed?
+        if: steps.inconsistent.outcome == 'success'
+        run: exit 1
