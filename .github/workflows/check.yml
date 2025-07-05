@@ -13,6 +13,10 @@ jobs:
       packages: read
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: https://github.com/JabRef/jabref-demonstration-libraries.git
+          path: jabref-demonstration-libraries
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -29,6 +33,15 @@ jobs:
         id: inconsistent
         with:
           bibfile: test/inconsistent.bib
-      - name: inconsistent failed?
+      - name: inconsistent did not fail?
         if: steps.inconsistent.outcome == 'success'
+        run: exit 1
+      - name: Check jabref-demonstration-libraries/chocolate/Chocolate.bib
+        continue-on-error: true
+        uses: ./
+        id: chocolate
+        with:
+          bibfile: test/inconsistent.bib
+      - name: chocolate did not fail?
+        if: steps.chocolate.outcome == 'success'
         run: exit 1
