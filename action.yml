@@ -11,3 +11,4 @@ runs:
   args:
     - check-consistency
     - --input=${{ inputs.bibfile }}
+    - --porcelain
