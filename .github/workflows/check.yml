@@ -19,7 +19,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run jabref-action
-        uses: ./ # use local action
+      - name: Check test/consistent.bib
+        uses: ./
         with:
-          bibfile: test/test.bib
+          bibfile: test/consistent.bib
+      - name: Check test/inconsistent.bib
+       # inconsistent.bib will trigger a failure, but the overall action should pass
+       # We include this step for manual inspection
+        continue-on-error: true
+        uses: ./
+        with:
+          bibfile: test/inconsistent.bib
