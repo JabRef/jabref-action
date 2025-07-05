@@ -12,17 +12,14 @@ jobs:
     permissions:
       packages: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          repository: JabRef/jabref-demonstration-libraries
-          path: jabref-demonstration-libraries
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
       - name: Check test/consistent.bib
         uses: ./
         with:
@@ -36,6 +33,12 @@ jobs:
       - name: inconsistent did not fail?
         if: steps.inconsistent.outcome == 'success'
         run: exit 1
+
+      - uses: actions/checkout@v4
+        with:
+          repository: JabRef/jabref-demonstration-libraries
+          path: jabref-demonstration-libraries
+          ref: 97faf2b6
       - name: Check jabref-demonstration-libraries/chocolate/Chocolate.bib
         continue-on-error: true
         uses: ./
