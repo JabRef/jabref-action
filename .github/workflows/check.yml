@@ -41,7 +41,7 @@ jobs:
         uses: ./
         id: chocolate
         with:
-          bibfile: test/inconsistent.bib
+          bibfile: jabref-demonstration-libraries/chocolate/Chocolate.bib
       - name: chocolate did not fail?
         if: steps.chocolate.outcome == 'success'
         run: exit 1
