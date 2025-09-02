@@ -19,7 +19,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Check test/consistent.bib
         uses: ./
         with:
@@ -34,7 +34,7 @@ jobs:
         if: steps.inconsistent.outcome == 'success'
         run: exit 1
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: JabRef/jabref-demonstration-libraries
           path: jabref-demonstration-libraries
