@@ -29,6 +29,8 @@ jobs:
 
 ### Output
 
+The action generates a consistency check report as a Markdown table. This is automatically added to the Job Summary of your workflow run.
+
 | entry type | citation key   | Eprint | File | Number | Pages | URL |
 | ---------- | -------------- | ------ | ---- | ------ | ----- | --- |
 | Article    | Cooper_2007    | -      | -    | o      | o     | -   |
