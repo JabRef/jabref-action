@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o pipefail
 
-echo "# $1" >> $GITHUB_STEP_SUMMARY
+echo "## $1" >> $GITHUB_STEP_SUMMARY
 echo "" >> $GITHUB_STEP_SUMMARY
 
 shift
