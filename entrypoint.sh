@@ -7,4 +7,11 @@ echo "" >> $GITHUB_STEP_SUMMARY
 shift
 
 /jabref/jabkit/bin/jabkit "$@" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
-exit ${PIPESTATUS[0]}
+
+exit_code=${PIPESTATUS[0]}
+
+if [ "$exit_code" -eq 0 ]; then
+  echo "✅ no inconsistencies" | tee -a "$GITHUB_STEP_SUMMARY"
+fi
+
+exit "$exit_code"
