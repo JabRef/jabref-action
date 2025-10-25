@@ -9,6 +9,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.bibfile }}
     - check-consistency
     - --input=${{ inputs.bibfile }}
     - --porcelain
