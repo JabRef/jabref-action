@@ -1,3 +1,4 @@
-#!/bin/sh -l
-
-/jabref/jabkit/bin/jabkit "$@" | tee $GITHUB_STEP_SUMMARY
+#!/usr/bin/env bash
+set -o pipefail
+/jabref/jabkit/bin/jabkit "$@" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+exit ${PIPESTATUS[0]}
