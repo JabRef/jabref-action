@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 set -o pipefail
 
 echo "## $1" >> $GITHUB_STEP_SUMMARY
@@ -8,7 +8,7 @@ shift
 
 /jabref/jabkit/bin/jabkit "$@" 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
-exit_code=${PIPESTATUS[0]}
+exit_code=$?
 
 if [ "$exit_code" -eq 0 ]; then
   echo "✅ no inconsistencies" | tee -a "$GITHUB_STEP_SUMMARY"
