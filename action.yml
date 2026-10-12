@@ -5,17 +5,8 @@ inputs:
   bibfile:
     description: 'BibTeX file'
     required: true
-  output-format:
-    description: 'Output format: csv, errorformat, github-actions or txt'
-    required: false
-    default: 'errorformat'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.bibfile }}
-    - check
-    - consistency
-    - ${{ inputs.bibfile }}
-    - --porcelain
-    - --output-format=${{ inputs.output-format }}

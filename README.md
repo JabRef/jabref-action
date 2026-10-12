@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run jabref-action
         uses: jabref/jabref-action@main
@@ -29,8 +29,11 @@ jobs:
 
 ### Output
 
-The action generates a consistency check report as a Markdown table.
-This is automatically added to the [Job summary](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#example-of-adding-a-job-summary) of your workflow run.
+The action reports inconsistencies in two ways:
+
+- Each finding is emitted as an error [annotation](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-error-message) pointing to the entry in the BibTeX file.
+  On pull requests, these show up inline in the "Files changed" tab.
+- A consistency check report as a Markdown table is added to the [Job summary](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#example-of-adding-a-job-summary) of your workflow run:
 
 | entry type | citation key   | Eprint | File | Number | Pages | URL |
 | ---------- | -------------- | ------ | ---- | ------ | ----- | --- |
