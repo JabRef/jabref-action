@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Assign the user or unassign stale assignments
         id: assign
-        uses: takanome-dev/assign-issue-action@edge
+        uses: takanome-dev/assign-issue-action@fad4b83750f7df31e03c2a42e8f1880b0b4b3573 # edge
         with:
           github_token: '${{ secrets.GITHUB_TOKEN }}'
           days_until_unassign: 14
@@ -36,7 +36,7 @@ jobs:
             It also looks like you skipped reading our [CONTRIBUTING.md](https://github.com/JabRef/jabref/blob/main/CONTRIBUTING.md), which explains exactly how to participate. No worries, it happens to the best of us.
             Give it a read, and you’ll discover the ancient wisdom of assigning issues to yourself. Trust me, it’s worth it. 🚀
       - name: Move issue corresponding column in "Candidates for University Projects"
-        uses: m7kvqbe1/github-action-move-issues@main
+        uses: m7kvqbe1/github-action-move-issues@1e0e8ac3ab57afe93ddec45b2d48cbe2f1a6595b # v1.3.0
         if: ${{ steps.assign.outputs.assigned == 'yes' || steps.assign.outputs.unassigned == 'yes' }}
         with:
           github-token: ${{ secrets.GH_TOKEN_ACTION_MOVE_ISSUE }}
@@ -47,7 +47,7 @@ jobs:
           default-column: "Free to take"
           skip-if-not-in-project: true
       - name: Move issue corresponding column in "Good First Issues"
-        uses: m7kvqbe1/github-action-move-issues@main
+        uses: m7kvqbe1/github-action-move-issues@1e0e8ac3ab57afe93ddec45b2d48cbe2f1a6595b # v1.3.0
         if: ${{ steps.assign.outputs.assigned == 'yes' || steps.assign.outputs.unassigned == 'yes' }}
         with:
           github-token: ${{ secrets.GH_TOKEN_ACTION_MOVE_ISSUE }}
